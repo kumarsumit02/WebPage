@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- IMPORTANT for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>April Fool 😜</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      padding: 20px;
+
+      background: linear-gradient(270deg, #ff0080, #7928ca, #00c6ff, #ffcc00);
+      background-size: 800% 800%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      animation: bounce 1s infinite alternate;
+      text-shadow: 0 0 15px rgba(255,255,255,0.7);
+      margin: 0;
+    }
+
+    p {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      margin-top: 15px;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h1>APRIL FOOL 😜</h1>
+    <p>You just got pranked!</p>
+  </div>
+
+  <script>
+    const emojis = ["😂", "🤡", "😜", "🎉", "🤣"];
+
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (Math.random() * 2 + 4) + "s";
+
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 6000);
+    }
+
+    // Reduce load on mobile
+    setInterval(createEmoji, 800);
+  </script>
+
+</body>
+</html>
